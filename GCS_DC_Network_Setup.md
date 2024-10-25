@@ -1,5 +1,5 @@
 
-# Drone Onboard Computer (DC) Hardware Setup
+# GCS and DC Network Setup over Alfa Wireless USB
 
 
 ## Requirements
