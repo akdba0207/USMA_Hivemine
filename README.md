@@ -125,10 +125,10 @@ Make sure to have both GSC and DC are on the same network over Alfa Wireless USB
         roscd mavros/launch
         sudo nano px4.launch
         **edit this line** <arg name="fcu_url" default="/dev/ttyUSB0:921600" />
-        (save and exit)
+        (Save and exit)
         roslaunch mavros px4.launch
 
-* Open Terminal (T2) - Send the command to the drone (1: Arm, 2: OFFBOARD (Takeoff), 3: Stabilized, 4: Land, 5: Mission)
+* Open Terminal (T2) - Send the command to the drone (1: Arm, 2: OFFBOARD (Takeoff), 3: Landing, 4: Disarm, 5: Mission)
 
         ssh drone@192.168.11.{tail_number}
         source /opt/ros/noetic/setup.bash
@@ -142,11 +142,19 @@ Make sure to have both GSC and DC are on the same network over Alfa Wireless USB
         source ~/catkin_ws/devel/setup.bash
         rosrun flight_test hm24_response
 
-* Open Terminal (T4) - Run Lissajous Pattern flight missions
+* Open Terminal (T4) - Run Lissajous Pattern flight missions. You can also adjust the flight altitude
 
         ssh drone@192.168.11.{tail_number}
         source /opt/ros/noetic/setup.bash
         source ~/catkin_ws/devel/setup.bash
+        (You can adjust the home position)
+        roscd flight_test/scripts/
+        nano Lissajous_pattern.py
+        **Line 26-28 (below)** 
+        self.home_lat = 41.3909084
+        self.home_lon = -73.9529137
+        self.home_alt = 15.0
+        (Change, Save, and exit)
         rosrun flight_test Lissajous_pattern.py
 
 * Open Terminal (T5) - Run computer vision processing
@@ -158,8 +166,17 @@ Make sure to have both GSC and DC are on the same network over Alfa Wireless USB
         roscd vision_processing/scripts
         nano img_process_node.py
         **Line 63, add '##' to comment the line** ##cv2.imshow("images", combined_frame) 
-        (exit)
+        (Save and exit)
         python3 img_process_node.py
+
+* When all the terminal are running without any problem, go to T2, do the following   
+   * Type 1 and enter: Arm the drone
+   * Type 2 and enter: OFFBOARD mode and Takeoff
+   * Check if drone is hovering at the home position with desired altitude after Takeoff
+   * If the desired altitude is not matched to what you see from QGroundControl, go to T4, adjust the height by adding numbers. This will increase/descrease the altitude in (m)
+   * If the altitude looks good, go back to T2, type 5 and enter! The drone will begin the Lissajous pattern mission
+   * Make sure to keep the setmode stick to Position Hold and throttle stick in the mid-way on your transmitter.
+   * After the mission, use your transmitter to bring back the drone for safe landing.
 
 
 #### ENJOY!
