@@ -72,7 +72,7 @@ This setup requires one GSC and one ODroid with a SD card (minimum 32GB).
         
         ip a
 * Copy the id of the last wireless device. It should be similar to wlx00c0ca904414.
-* Navigate to $HOME/catkin_ws/
+* Navigate to $HOME/catkin_ws/src/
 * Run the wifi_config.sh script, entering in the id from step 1 and the last octet of the desired IP for your GCS (must be a number between 206 and 254):
        
         ./wifi_config.sh <wireless device id> <Choose a # between 206-254>
