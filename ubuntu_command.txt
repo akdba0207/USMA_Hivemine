@@ -1,0 +1,64 @@
+1. remove directory that's not empty
+- rm -rf ${folder_name}
+
+2. Move directoy from local to remote
+- scp -r ~/catkin_ws/src/${project_folder} drone@192.168.11.148:~/catkin_ws/src
+
+vice versa
+- scp -r drone@192.168.11.148:~/catkin_ws/src/vision_processing/pictures ~/Desktop/
+- scp -r drone@192.168.11.148:~/subset.bag ~/Desktop/bag
+
+3. rename file
+- cp august.png september.png
+
+4. rosbag
+-rosbag record -O subset /mavros/global_position/global /drone_pose_error /drone_utm_pose /mavros/odometry/in
+
+
+41.3907243
+
+-73.9532067
+
+radius 2m (2 flights) 1.5m (2 flights)
+
+./acs/wifi_config.sh wlx00c0caa71c14 210
+
+ssh drone@192.168.11.148
+
+source ros_px4_operation
+
+Lissajous begins at (41.3909084, -73.9529137)
+
+1- 41.3907900 , -73.9532779
+2- 41.3908580 , -73.9533244
+3- 41.3908206 , -73.9531901
+4- 41.3909225 , -73.9531013
+5- 41.3909421 , -73.9531709
+6- 41.3909613 , -73.9532382
+7- 41.3909816 , -73.9533065
+
+
+
+07-26-2024
+
+41.3907352 , -73.9532025
+
+Lissajous begins at (41.3909084, -73.9529137)
+
+1- 41.3907362 , -73.9532025
+2- 41.3907745 , -73.9533385 
+3- 41.3909162 , -73.9533497
+4- 41.3908746 , -73.9532155
+5- 41.3908536 , -73.9531473
+6- 41.3908284 , -73.9529718
+7- 41.3909373 , -73.9530678
+8- 41.3909572 , -73.9531368
+9- 41.3909761 , -73.9532048
+10- 41.3909959 , -73.9532722
+11- 41.3910161 , -73.9533397
+12- 41.3911121 , -73.9533683
+13- 41.3910999 , -73.9532628
+14- 41.3911011 , -73.9531844
+15- 41.3910830 , -73.9530386
+16- 41.3909809 , -73.9529441
+
