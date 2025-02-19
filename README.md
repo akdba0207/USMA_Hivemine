@@ -178,5 +178,23 @@ Make sure to have both GSC and DC are on the same network over Alfa Wireless USB
    * Make sure to keep the setmode stick to Position Hold and throttle stick in the mid-way on your transmitter.
    * After the mission, use your transmitter to bring back the drone for safe landing.
 
+* For the data collection, open Terminal (T6) - Run data collector
+
+        ssh drone@192.168.11.{tail_number}
+        source /opt/ros/noetic/setup.bash
+        source ~/catkin_ws/devel/setup.bash
+        (Sanity check! You have to comment "imshow" because Odroid does not have display connected)
+        rosrun flight_test data_collector.py
+
+* Open Terminal (T7) - Run ROSBag, the command below will record global position, position error, UTM position, and odometry information (pose covariance matrice)
+
+        rosbag record -O subset /mavros/global_position/global /drone_pose_error /drone_utm_pose /mavros/odometry/in
+
+* Once you are done, run the rosbag_to_csv.py to convert the bag file into CSV. The "roscore" should be running
+
+        cd <navigate to the directory where rosbag_to_csv.py and SimplePyQtGUIKit.py>
+        python rosbag_to_csv.py
+
+
 
 #### ENJOY!
